@@ -1,501 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Central Christian Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>루터를 따라가는 길 — 독일 종교개혁 탐방</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#08090a;--deep:#0f1013;--panel:#16181d;--card:#1c1f26;--border:#2a2d35;
-  --gold:#c8a84b;--gold2:#e8cc7a;--gold3:#f5e4a8;
-  --cream:#faf6ee;--soft:#f0ead8;--muted:#6b7280;--white:#ffffff;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:var(--ink);color:var(--white);overflow-x:hidden}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
+  :root{
+    --parchment:#e9dfc7;
+    --parchment-2:#ddd0ab;
+    --ink:#2a231d;
+    --ink-soft:#4a3f34;
+    --wine:#7c2c24;
+    --wine-dark:#5c1f19;
+    --brass:#a9822f;
+    --slate:#3c5952;
+    --line:#b7a274;
+    --paper-shadow: rgba(42,35,29,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:2000;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.03) 0, transparent 45%);
+    mix-blend-mode:multiply;
+  }
+  .eyebrow{
+    font-family:'Inter', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--wine);
+    font-weight:600;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    margin:0;
+    font-weight:600;
+  }
+  .blackletter{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-weight:400;
+  }
+  a{color:var(--wine);}
+  img{max-width:100%; display:block;}
 
-/* PARTICLES */
-#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:drift linear infinite}
-@keyframes drift{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.3}90%{opacity:.1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 6vw;
+    background:rgba(233,223,199,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  nav .brand span{color:var(--wine);}
+  nav ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+    font-family:'Inter', sans-serif; font-size:0.82rem; letter-spacing:0.03em;
+  }
+  nav ul a{color:var(--ink-soft); text-decoration:none; padding-bottom:3px; border-bottom:1px solid transparent; transition:border-color .2s, color .2s;}
+  nav ul a:hover{color:var(--wine); border-color:var(--wine);}
+  @media (max-width:720px){ nav ul{display:none;} }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(8,9,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,168,75,.15);padding:0 2.5rem;height:68px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{display:flex;align-items:center;gap:13px;text-decoration:none;cursor:pointer}
-.cross-wrap{position:relative;width:28px;height:28px;flex-shrink:0}
-.cross-wrap::before,.cross-wrap::after{content:'';position:absolute;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:3px}
-.cross-wrap::before{width:4px;height:100%;left:50%;top:0;transform:translateX(-50%)}
-.cross-wrap::after{width:100%;height:4px;top:36%;left:0}
-.brand-title{font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;color:var(--white);letter-spacing:.07em;line-height:1.2}
-.brand-sub{font-size:.52rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;font-weight:500}
-.nav-tabs{display:flex;gap:.2rem}
-.nav-tab{padding:.45rem 1.1rem;border:none;background:transparent;color:#777;font-family:'Outfit',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:6px;transition:all .25s;position:relative}
-.nav-tab::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .3s;border-radius:99px}
-.nav-tab:hover{color:var(--gold2)}
-.nav-tab.active{color:var(--gold)}
-.nav-tab.active::after{width:55%}
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:9vw 6vw 7vw;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+    width:1px; height:70px; background:var(--line);
+  }
+  .hero .eyebrow{display:block; margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 5rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 .accent{
+    display:block;
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:1.15em;
+    color:var(--wine-dark);
+    margin-top:6px;
+    font-weight:400;
+  }
+  .hero p.lede{
+    max-width:560px; margin:26px auto 0;
+    font-size:1.12rem; color:var(--ink-soft);
+  }
+  .hero .facts{
+    display:flex; justify-content:center; gap:48px;
+    margin-top:56px; flex-wrap:wrap;
+  }
+  .hero .facts div{text-align:center;}
+  .hero .facts .num{font-family:'Fraunces', serif; font-size:2rem; font-weight:600; color:var(--wine);}
+  .hero .facts .lbl{font-family:'Inter', sans-serif; font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-top:4px;}
 
-/* PAGES */
-.page{display:none;min-height:100vh;padding-top:68px;position:relative;z-index:1}
-.page.active{display:block}
+  /* ---------- INTRO ---------- */
+  .intro{
+    max-width:680px; margin:0 auto; padding:2vw 6vw 6vw;
+    font-size:1.08rem; color:var(--ink-soft);
+  }
+  .intro .dropcap{
+    float:left; font-family:'UnifrakturMaguntia', cursive;
+    font-size:4.4rem; line-height:0.78; color:var(--wine-dark);
+    padding-right:12px; padding-top:4px;
+  }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:2rem}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 30%,rgba(200,168,75,.08) 0%,transparent 65%),radial-gradient(ellipse 50% 50% at 80% 80%,rgba(200,168,75,.04) 0%,transparent 60%)}
-.hero-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(200,168,75,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,168,75,.04) 1px,transparent 1px);background-size:80px 80px}
-.hero-content{position:relative;text-align:center;max-width:900px}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(200,168,75,.3);padding:.4rem 1.2rem;border-radius:99px;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;background:rgba(200,168,75,.06);animation:fadeDown .8s ease both}
-.badge-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(2.5rem,7vw,6rem);font-weight:900;line-height:.95;margin-bottom:.6rem;letter-spacing:.03em;animation:fadeUp .9s .15s ease both}
-.hero-accent{display:block;background:linear-gradient(135deg,var(--gold),var(--gold2),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
-.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;font-style:italic;color:#aaa;margin:1.5rem 0 2.5rem;letter-spacing:.05em;animation:fadeUp .9s .3s ease both}
-.hero-ornament{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2.5rem;animation:fadeUp .9s .4s ease both}
-.orn-line{flex:1;max-width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-.orn-line.r{background:linear-gradient(90deg,var(--gold),transparent)}
-.orn-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
-.hero-verse{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#666;font-style:italic;animation:fadeUp .9s .5s ease both}
-.hero-verse strong{color:#666;font-style:normal;font-family:'Outfit',sans-serif;font-size:.8rem;letter-spacing:.12em;display:block;margin-top:.4rem}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeIn 2s 1.3s ease both}
-.scroll-txt{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:#444}
-.scroll-line{width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:scrollPulse 1.8s ease infinite}
-@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+  /* ---------- JOURNEY / ROUTE ---------- */
+  .journey{
+    position:relative;
+    max-width:980px; margin:0 auto; padding:2vw 6vw 4vw;
+  }
+  .journey-head{text-align:center; margin-bottom:64px;}
+  .journey-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem);}
+  .journey-head p{color:var(--ink-soft); max-width:480px; margin:12px auto 0; font-size:0.98rem;}
 
-/* PILLARS */
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.pillar{background:var(--deep);padding:3.5rem 2.5rem;text-align:center;position:relative;overflow:hidden;transition:background .3s}
-.pillar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .4s}
-.pillar:hover{background:var(--panel)}
-.pillar:hover::after{transform:scaleX(1)}
-.pillar-num{font-family:'Cinzel',serif;font-size:3rem;font-weight:900;color:rgba(200,168,75,.07);position:absolute;top:.8rem;right:1.2rem;line-height:1}
-.pillar-icon{font-size:1.8rem;margin-bottom:.8rem}
-.pillar h3{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);margin-bottom:.6rem;letter-spacing:.1em}
-.pillar p{font-size:.78rem;color:#666;line-height:1.8;font-weight:300}
+  .route-svg{
+    position:absolute; left:50%; top:280px; bottom:120px;
+    transform:translateX(-50%);
+    width:2px; z-index:0;
+  }
+  .route-line{
+    stroke:var(--brass); stroke-width:2; fill:none;
+    stroke-dasharray:6 8;
+    stroke-linecap:round;
+  }
+  @media (max-width:760px){
+    .route-svg{left:34px; transform:none;}
+  }
 
-/* STATS */
-.stats-bar{display:flex;gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stat-item{flex:1;background:var(--deep);padding:2rem;text-align:center}
-.stat-num{font-family:'Cinzel',serif;font-size:2.2rem;font-weight:900;color:var(--gold);display:block}
-.stat-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-top:.3rem;display:block}
+  .stop{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr 60px 1fr;
+    align-items:start;
+    gap:0 32px;
+    margin-bottom:64px;
+    opacity:0; transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .stop.show{opacity:1; transform:translateY(0);}
+  .stop .seal{
+    grid-column:2;
+    width:56px; height:56px; border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, #9c3a2f, var(--wine-dark) 70%);
+    box-shadow:0 3px 0 rgba(0,0,0,0.15), 0 0 0 4px var(--parchment), 0 0 0 5px var(--brass);
+    color:#f1e6c9;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem;
+    margin-top:6px;
+  }
+  .stop .card{
+    background:var(--parchment-2);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:26px 28px;
+    box-shadow:4px 4px 0 var(--paper-shadow);
+  }
+  .stop:nth-child(odd) .card{grid-column:1;}
+  .stop:nth-child(odd) .spacer{grid-column:3;}
+  .stop:nth-child(even) .card{grid-column:3;}
+  .stop:nth-child(even) .spacer{grid-column:1;}
 
-/* SEC SHARED */
-.sec{padding:6rem 3rem}
-.sec-inner{max-width:1200px;margin:0 auto}
-.sec-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.8rem}
-.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;line-height:1.1;margin-bottom:1rem;letter-spacing:.04em}
-.sec-rule{display:flex;align-items:center;gap:.8rem;margin-bottom:1.8rem}
-.rule-line{height:1px;width:50px;background:linear-gradient(90deg,var(--gold),transparent)}
-.rule-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
-.sec-desc{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#888;line-height:1.9;max-width:580px;font-weight:300}
+  @media (max-width:760px){
+    .stop{grid-template-columns:56px 1fr; gap:0 18px;}
+    .stop .seal{grid-column:1; margin-top:2px;}
+    .stop:nth-child(odd) .card, .stop:nth-child(even) .card{grid-column:2;}
+    .spacer{display:none;}
+  }
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
-.about-quote{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:3rem;position:relative}
-.about-quote::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:700;color:rgba(200,168,75,.08);position:absolute;top:-1.5rem;left:2rem;line-height:1}
-.about-quote p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:#ccc;line-height:1.8;position:relative;z-index:1}
-.about-quote cite{display:block;margin-top:1rem;font-size:.72rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;font-style:normal}
+  .card .icon{width:30px; height:30px; margin-bottom:14px; stroke:var(--wine-dark); fill:none; stroke-width:1.4;}
+  .card .kicker{
+    font-family:'Inter', sans-serif; font-size:0.68rem; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--slate); font-weight:600;
+  }
+  .card h3{font-size:1.5rem; margin-top:6px;}
+  .card .en-name{font-family:'Inter', sans-serif; font-size:0.8rem; color:var(--ink-soft); font-style:italic; margin-top:2px;}
+  .card p{font-size:0.96rem; color:var(--ink-soft); margin:14px 0 0;}
+  .card .tip{
+    margin-top:16px; padding-top:14px; border-top:1px dashed var(--line);
+    font-size:0.85rem; color:var(--ink-soft);
+  }
+  .card .tip b{color:var(--wine); font-family:'Inter', sans-serif; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;}
 
-/* FACULTY */
-.faculty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1.5rem;margin-top:3.5rem}
-.f-card{background:var(--panel);border:1px solid var(--border);padding:2rem 1.8rem;border-radius:12px;position:relative;overflow:hidden;transition:all .3s}
-.f-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,168,75,.06),transparent);opacity:0;transition:opacity .3s}
-.f-card:hover{transform:translateY(-6px);border-color:rgba(200,168,75,.4);box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.f-card:hover::before{opacity:1}
-.f-dot{position:absolute;top:1rem;right:1rem;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold)}
-.f-avatar{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;box-shadow:0 0 0 3px rgba(200,168,75,.2)}
-.f-name{font-family:'Cinzel',serif;font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.35rem;letter-spacing:.04em}
-.f-subject{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  /* ---------- PRACTICAL INFO ---------- */
+  .practical{
+    background:var(--ink); color:var(--parchment);
+    padding:7vw 6vw;
+    margin-top:2vw;
+  }
+  .practical-inner{max-width:980px; margin:0 auto;}
+  .practical .eyebrow{color:var(--brass);}
+  .practical h2{color:var(--parchment); font-size:clamp(1.8rem,3vw,2.4rem); margin-top:14px;}
+  .practical-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+    margin-top:48px;
+  }
+  @media (max-width:760px){ .practical-grid{grid-template-columns:1fr;} }
+  .practical-grid .col h4{
+    font-family:'Fraunces', serif; color:var(--brass); font-size:1.15rem; margin:0 0 10px;
+  }
+  .practical-grid .col p, .practical-grid .col li{
+    color:#cfc4a8; font-size:0.92rem;
+  }
+  .practical-grid ul{margin:0; padding-left:18px;}
+  .practical-grid li{margin-bottom:6px;}
 
-/* STUDENTS */
-.students-toolbar{display:flex;align-items:center;gap:.8rem;margin-top:3rem;flex-wrap:wrap}
-.search-wrap{flex:1;min-width:200px;position:relative}
-.search-wrap input{width:100%;padding:.7rem 1rem .7rem 2.6rem;background:var(--panel);border:1px solid var(--border);color:var(--white);font-family:'Outfit',sans-serif;font-size:.82rem;border-radius:8px;outline:none;transition:border-color .25s}
-.search-wrap input:focus{border-color:rgba(200,168,75,.5)}
-.search-wrap input::placeholder{color:#555}
-.search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:#555;font-size:.85rem;pointer-events:none}
-.grade-filter{display:flex;gap:.4rem;flex-wrap:wrap}
-.grade-btn{padding:.45rem .9rem;border-radius:6px;border:1px solid var(--border);background:var(--panel);color:#777;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Outfit',sans-serif}
-.grade-btn:hover{border-color:rgba(200,168,75,.35);color:var(--gold2)}
-.grade-btn.active{background:rgba(200,168,75,.1);border-color:var(--gold);color:var(--gold)}
-.add-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;white-space:nowrap;box-shadow:0 4px 20px rgba(200,168,75,.28)}
-.add-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,168,75,.45)}
-.students-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1.2rem;margin-top:2rem}
-.s-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s;animation:fadeIn .35s ease both}
-.s-card:hover{transform:translateY(-5px);border-color:rgba(200,168,75,.38);box-shadow:0 16px 48px rgba(0,0,0,.5)}
-.s-top{height:85px;background:linear-gradient(135deg,var(--card),var(--panel));display:flex;align-items:center;justify-content:center;position:relative}
-.s-photo{width:68px;height:68px;border-radius:50%;border:3px solid rgba(200,168,75,.28);display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Cinzel',serif;font-size:1.45rem;color:var(--gold);font-weight:700;background:linear-gradient(135deg,var(--card),#222);position:absolute;bottom:-34px}
-.s-photo img{width:100%;height:100%;object-fit:cover}
-.s-grade{position:absolute;top:.55rem;right:.55rem;padding:.18rem .55rem;border-radius:99px;background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.28);font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.s-body{padding:2.8rem 1.2rem 1.4rem;text-align:center}
-.s-name{font-family:'Cinzel',serif;font-size:.87rem;font-weight:600;color:var(--white);margin-bottom:.25rem;letter-spacing:.04em;line-height:1.25}
-.s-id{font-size:.62rem;color:#444;letter-spacing:.1em;margin-bottom:.7rem}
-.s-section{display:inline-block;padding:.15rem .6rem;border-radius:99px;background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.18);font-size:.6rem;letter-spacing:.1em;color:#888;text-transform:uppercase;margin-bottom:.8rem}
-.s-actions{display:flex;gap:.4rem;justify-content:center}
-.s-btn{padding:.28rem .65rem;border-radius:5px;border:1px solid var(--border);background:transparent;color:#666;font-size:.62rem;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;letter-spacing:.05em}
-.s-btn:hover{border-color:rgba(200,168,75,.4);color:var(--gold)}
-.s-btn.del:hover{border-color:rgba(239,68,68,.4);color:#ef4444}
-.no-students{grid-column:1/-1;text-align:center;padding:5rem 2rem;color:#444;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:2rem}
-.modal-overlay.open{display:flex}
-.modal{background:var(--panel);border:1px solid var(--border);border-radius:16px;width:100%;max-width:470px;padding:2.5rem;position:relative;animation:modalIn .3s ease both;box-shadow:0 40px 100px rgba(0,0,0,.8)}
-@keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(14px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-title{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;color:var(--white)}
-.modal-sub{font-size:.76rem;color:#666;margin-bottom:2rem}
-.modal-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:transparent;color:#666;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.modal-close:hover{border-color:rgba(200,168,75,.4);color:var(--gold)}
-.form-group{margin-bottom:1.1rem}
-.form-label{display:block;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.45rem}
-.form-input,.form-select{width:100%;padding:.7rem .95rem;background:var(--card);border:1px solid var(--border);color:var(--white);font-family:'Outfit',sans-serif;font-size:.85rem;border-radius:8px;outline:none;transition:border-color .25s}
-.form-input:focus,.form-select:focus{border-color:rgba(200,168,75,.5)}
-.form-input::placeholder{color:#444}
-.form-select option{background:var(--card)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.photo-upload{width:100%;padding:1.1rem;border:2px dashed var(--border);border-radius:8px;text-align:center;cursor:pointer;transition:border-color .25s;background:var(--card)}
-.photo-upload:hover{border-color:rgba(200,168,75,.35)}
-.photo-upload-icon{font-size:1.4rem;margin-bottom:.35rem;color:#444}
-.photo-upload-text{font-size:.72rem;color:#555}
-.photo-preview{width:56px;height:56px;border-radius:50%;object-fit:cover;margin:0 auto .4rem;display:none}
-.modal-btn{width:100%;padding:.82rem;margin-top:.4rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(200,168,75,.28)}
-.modal-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,168,75,.45)}
-
-/* FOOTER */
-footer{background:var(--deep);border-top:1px solid var(--border);padding:4rem 3rem 2rem}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
-.footer-desc{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:#555;line-height:1.8;margin-top:1rem;font-style:italic;max-width:280px}
-.footer-col h5{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--gold);margin-bottom:1.1rem;text-transform:uppercase}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.footer-col ul li{font-size:.78rem;color:#555;cursor:pointer;transition:color .2s}
-.footer-col ul li:hover{color:var(--gold2)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-copy{font-size:.68rem;color:#444;letter-spacing:.07em}
-.footer-verse{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#444;font-style:italic}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-/* RESPONSIVE */
-@media(max-width:900px){.about-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.pillars{grid-template-columns:1fr}.stats-bar{flex-wrap:wrap}.nav-tab{padding:.4rem .6rem;font-size:.65rem}}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.hero-title{font-size:2.3rem}.sec{padding:4rem 1.5rem}.nav-tabs{gap:0}}
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center; padding:40px 6vw 50px;
+    font-family:'Inter', sans-serif; font-size:0.78rem; color:var(--ink-soft);
+  }
+  footer .mark{font-family:'UnifrakturMaguntia', cursive; font-size:1.3rem; color:var(--wine-dark); display:block; margin-bottom:10px;}
 </style>
 </head>
 <body>
 
-<div id="particles"></div>
-
-<!-- NAV -->
 <nav>
-  <div class="nav-brand" onclick="showPage('home')">
-    <div class="cross-wrap"></div>
-    <div>
-      <div class="brand-title">Central Christian Academy</div>
-      <div class="brand-sub">Faith · Excellence · Character</div>
-    </div>
-  </div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('home')">Home</button>
-    <button class="nav-tab" onclick="showPage('about')">About</button>
-    <button class="nav-tab" onclick="showPage('faculty')">Faculty</button>
-    <button class="nav-tab" onclick="showPage('students')">Students</button>
-  </div>
+  <div class="brand">루터를 따라가는 <span>길</span></div>
+  <ul>
+    <li><a href="#intro">소개</a></li>
+    <li><a href="#journey">탐방 경로</a></li>
+    <li><a href="#practical">여행 정보</a></li>
+  </ul>
 </nav>
 
-<!-- PAGE: HOME -->
-<div class="page active" id="page-home">
-  <section class="hero">
-    <div class="hero-bg"></div><div class="hero-lines"></div>
-    <div class="hero-content">
-      <div class="hero-badge"><span class="badge-dot"></span>Established in Faith &amp; Purpose</div>
-      <h1 class="hero-title">Central Christian<span class="hero-accent">Academy</span></h1>
-      <p class="hero-sub">Nurturing minds, shaping souls, building futures.</p>
-      <div class="hero-ornament"><div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line r"></div></div>
-      <p class="hero-verse"><em>"Train up a child in the way he should go, and when he is old he will not depart from it."</em><strong>— Proverbs 22:6</strong></p>
-    </div>
-    <div class="hero-scroll"><span class="scroll-txt">Scroll</span><div class="scroll-line"></div></div>
-  </section>
+<header class="hero">
+  <span class="eyebrow">1517 — 1522 · 여섯 도시의 기록</span>
+  <h1>독일 종교개혁 탐방<span class="accent">Der Weg der Reformation</span></h1>
+  <p class="lede">비텐베르크의 교회 문을 두드린 못 소리에서 시작해, 보름스의 법정과 바르트부르크의 은신처를 거쳐 유럽 전역으로 퍼져 나간 한 수도사의 발자취를 따라갑니다.</p>
+  <div class="facts">
+    <div><div class="num">6</div><div class="lbl">탐방 도시</div></div>
+    <div><div class="num">1517</div><div class="lbl">95개조 반박문</div></div>
+    <div><div class="num">1521</div><div class="lbl">보름스 제국의회</div></div>
+    <div><div class="num">~5</div><div class="lbl">추천 여행 일수</div></div>
+  </div>
+</header>
 
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-num">01</div><div class="pillar-icon">✝</div><h3>Faith</h3><p>Rooted in Christian values and a commitment to spiritual growth for every student in our community.</p></div>
-    <div class="pillar"><div class="pillar-num">02</div><div class="pillar-icon">📖</div><h3>Excellence</h3><p>Pursuing academic rigor and intellectual curiosity across every subject, every classroom, every day.</p></div>
-    <div class="pillar"><div class="pillar-num">03</div><div class="pillar-icon">🌟</div><h3>Character</h3><p>Developing honorable, compassionate leaders equipped to serve their community and the world.</p></div>
+<section id="intro" class="intro">
+  <p><span class="dropcap">1</span>517년 10월 31일, 작센의 작은 대학 도시 비텐베르크에서 한 아우구스티노회 수도사가 성당 문에 라틴어로 쓴 문서 한 장을 붙였습니다. 마르틴 루터의 「95개조 반박문」은 면벌부 판매를 비판하는 신학 논쟁의 시작이었지만, 인쇄술의 힘을 타고 몇 주 만에 독일 전역으로, 몇 달 만에 유럽 전역으로 퍼져나가며 교회와 사회의 구조를 뒤흔들었습니다. 이 사이트는 루터가 태어나고, 배우고, 맞서고, 숨고, 번역했던 여섯 도시를 시간 순서로 소개합니다. 각 도시는 오늘날에도 당시의 흔적을 잘 간직하고 있어, 종교개혁의 역사를 발로 걸으며 확인할 수 있습니다.</p>
+</section>
+
+<section id="journey" class="journey">
+  <div class="journey-head">
+    <span class="eyebrow">탐방 경로</span>
+    <h2>여섯 개의 정거장</h2>
+    <p>탄생부터 확산까지, 루터의 생애를 따라가는 순서로 구성했습니다.</p>
   </div>
 
-  <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num" id="stat-students">0</span><span class="stat-label">Students Enrolled</span></div>
-    <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Dedicated Faculty</span></div>
-    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Christ-Centered</span></div>
-    <div class="stat-item"><span class="stat-num">K–12</span><span class="stat-label">Grade Levels</span></div>
+  <svg class="route-svg" width="2" height="100%" preserveAspectRatio="none">
+    <line class="route-line" x1="1" y1="0" x2="1" y2="100%"/>
+  </svg>
+
+  <!-- 1. Eisleben -->
+  <article class="stop">
+    <div class="spacer"></div>
+    <div class="seal">1</div>
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2 L12 8 M8 8 L16 8 M6 22 L6 12 L18 12 L18 22 M4 22 L20 22 M9 22 V17 H15 V22"/></svg>
+      <div class="kicker">1483 · 1546</div>
+      <h3>아이슬레벤</h3>
+      <div class="en-name">Eisleben, Sachsen-Anhalt</div>
+      <p>루터가 태어난 곳이자 세상을 떠난 곳입니다. 1483년 11월 10일 이곳에서 태어나 다음 날 성 페트리·파울리 교회에서 세례를 받았습니다. 1546년 고향 협상을 중재하러 왔다가 이곳에서 눈을 감으며, 그의 생애는 이 작은 광산 도시에서 시작해 다시 이곳에서 마무리되었습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>루터의 생가(Luthers Geburtshaus)와 사망한 집(Luthers Sterbehaus)이 도보 10분 거리에 함께 있어, 반나절 코스로 둘러보기 좋습니다.</div>
+    </div>
+  </article>
+
+  <!-- 2. Erfurt -->
+  <article class="stop">
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 21 V9 L12 3 L20 9 V21 M4 21 H20 M9 21 V14 H15 V21 M12 6 V9"/></svg>
+      <div class="kicker">1501 — 1511</div>
+      <h3>에르푸르트</h3>
+      <div class="en-name">Erfurt, Thüringen</div>
+      <p>루터가 법학을 공부하러 온 도시이자, 인생의 방향을 완전히 바꾼 곳입니다. 1505년 벼락을 만난 뒤 서원한 대로 아우구스티노 수도회에 입회해 이곳 수도원에서 수도사가 되었고, 1507년 사제 서품을 받았습니다. 훗날 신학의 뿌리가 된 사유와 고뇌가 이 도시의 수도원 독방에서 시작되었습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>루터가 머물렀던 아우구스티노 수도원(Augustinerkloster)은 지금도 게스트하우스 겸 기념관으로 운영되어 실제로 숙박도 가능합니다.</div>
+    </div>
+    <div class="seal">2</div>
+    <div class="spacer"></div>
+  </article>
+
+  <!-- 3. Wittenberg -->
+  <article class="stop">
+    <div class="spacer"></div>
+    <div class="seal">3</div>
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 21 H20 M6 21 V6 H18 V21 M9 21 V15 H15 V21 M8 3 H16 L18 6 H6 Z M12 9 V12 M10 10.5 H14"/></svg>
+      <div class="kicker">1517</div>
+      <h3>비텐베르크</h3>
+      <div class="en-name">Wittenberg, Sachsen-Anhalt</div>
+      <p>종교개혁의 상징적 출발점입니다. 루터가 교수로 재직하던 비텐베르크 대학의 성곽교회(Schlosskirche) 문에 1517년 10월 31일 「95개조 반박문」을 게시하며 논쟁이 시작되었습니다. 지금은 정식 명칭이 '루터슈타트 비텐베르크'로, 도시 이름 자체에 루터가 새겨져 있습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>성곽교회의 청동 문, 루터가 살던 집(Lutherhaus) 박물관, 그리고 멜란히톤의 집까지 도보로 이어지는 구시가지 전체가 유네스코 세계유산입니다.</div>
+    </div>
+  </article>
+
+  <!-- 4. Worms -->
+  <article class="stop">
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3 L12 10 M7 6 H17 M9 6 L5 12 A4 4 0 0 0 13 12 L9 6 Z M15 6 L11 12 A4 4 0 0 0 19 12 L15 6 Z M8 21 H16 M12 10 V21"/></svg>
+      <div class="kicker">1521</div>
+      <h3>보름스</h3>
+      <div class="en-name">Worms, Rheinland-Pfalz</div>
+      <p>루터가 황제 카를 5세와 제국의회 앞에 소환되어 자신의 주장을 철회할 것을 요구받은 곳입니다. 그는 성서와 이성에 반하지 않는 한 철회할 수 없다며 뜻을 굽히지 않았고, 이 장면은 "내가 여기 서 있나이다"라는 말로 오늘날까지 전해집니다. 이 사건으로 루터는 제국법상 무법자로 선고받았습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>도심 하이덴튀르름 광장에 있는 대형 종교개혁 기념비(Lutherdenkmal)에는 루터를 중심으로 종교개혁 선구자들의 조각상이 함께 세워져 있습니다.</div>
+    </div>
+    <div class="seal">4</div>
+    <div class="spacer"></div>
+  </article>
+
+  <!-- 5. Wartburg / Eisenach -->
+  <article class="stop">
+    <div class="spacer"></div>
+    <div class="seal">5</div>
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 21 V10 H7 V7 H10 V10 H14 V7 H17 V10 H20 V21 M4 21 H20 M9 21 V16 H15 V21"/></svg>
+      <div class="kicker">1521 — 1522</div>
+      <h3>바르트부르크 성 · 아이제나흐</h3>
+      <div class="en-name">Wartburg Castle, Eisenach</div>
+      <p>보름스 의회 이후 무법자가 된 루터는 작센 선제후의 보호 아래 융커 외르크라는 가명으로 이 성에 숨어 지냈습니다. 은신 기간 동안 신약성서를 독일어로 번역했고, 1522년 출간된 이 '9월 성서'는 독일어 표준어 형성에도 큰 영향을 미쳤습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>루터가 번역 작업을 했던 방(Lutherstube)이 그대로 보존되어 있으며, 성 자체가 유네스코 세계유산으로 튀링겐 숲의 전망도 함께 즐길 수 있습니다.</div>
+    </div>
+  </article>
+
+  <!-- 6. Frankfurt -->
+  <article class="stop">
+    <div class="card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 8 H20 M6 8 V21 M18 8 V21 M6 21 H18 M9 4 H15 V8 H9 Z M8 11 H16 M8 14 H16 M8 17 H16"/></svg>
+      <div class="kicker">1520년대 이후</div>
+      <h3>프랑크푸르트</h3>
+      <div class="en-name">Frankfurt am Main, Hessen</div>
+      <p>루터가 직접 머문 장소는 아니지만, 종교개혁을 유럽 전역으로 퍼뜨린 확산의 거점입니다. 중세부터 이어진 프랑크푸르트 도서 박람회는 당시 유럽 최대의 인쇄·출판 시장이었고, 루터의 저작과 팸플릿이 이곳을 통해 각국 상인과 학자들에게 전해졌습니다. 프랑크푸르트 시 자체도 1530년대에 종교개혁을 받아들였습니다.</p>
+      <div class="tip"><b>탐방 포인트</b><br>뢰머 광장 인근의 구시가지를 걸으며, 지금도 매년 열리는 프랑크푸르트 도서전의 역사가 이 시기부터 이어져 왔다는 점을 함께 떠올려 볼 수 있습니다.</div>
+    </div>
+    <div class="seal">6</div>
+    <div class="spacer"></div>
+  </article>
+
+</section>
+
+<section id="practical" class="practical">
+  <div class="practical-inner">
+    <span class="eyebrow">여행 정보</span>
+    <h2>탐방을 계획하는 법</h2>
+    <div class="practical-grid">
+      <div class="col">
+        <h4>추천 루트</h4>
+        <p>아이슬레벤 → 에르푸르트 → 비텐베르크 → 보름스 → 아이제나흐(바르트부르크) 순으로 돌면 지리적 이동이 자연스럽습니다. 프랑크푸르트는 국제공항이 있는 관문 도시이므로 여정의 시작이나 마지막에 배치하는 것이 효율적입니다.</p>
+      </div>
+      <div class="col">
+        <h4>소요 기간</h4>
+        <ul>
+          <li>핵심 도시(비텐베르크·에르푸르트·아이제나흐) 3일</li>
+          <li>전체 6개 도시 완주 5~7일</li>
+          <li>독일 기차(Deutsche Bahn)로 도시 간 대부분 2~3시간 이내 이동</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>방문 시기</h4>
+        <p>10월 31일 '종교개혁 기념일' 전후로 비텐베르크에서 대규모 축제와 재연 행사가 열립니다. 여름철은 야외 행사가 많고, 겨울에는 일부 소도시 박물관 운영 시간이 단축될 수 있어 사전 확인이 필요합니다.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <div style="display:flex;align-items:center;gap:11px"><div class="cross-wrap" style="width:22px;height:22px"></div><span style="font-family:'Cinzel',serif;font-weight:700;font-size:.88rem;letter-spacing:.07em">Central Christian Academy</span></div>
-          <p class="footer-desc">Committed to faith, scholarship, and the flourishing of every child entrusted to our care.</p>
-        </div>
-        <div class="footer-col"><h5>Navigate</h5><ul><li onclick="showPage('home')">Home</li><li onclick="showPage('about')">About Us</li><li onclick="showPage('faculty')">Faculty</li><li onclick="showPage('students')">Students</li></ul></div>
-        <div class="footer-col"><h5>Contact</h5><ul><li>info@centralchristian.edu</li><li>(555) 123-4567</li><li>123 Academy Drive</li></ul></div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Central Christian Academy. All rights reserved.</span>
-        <span class="footer-verse"><em>"To God be the glory."</em></span>
-      </div>
-    </div>
-  </footer>
-</div>
-
-<!-- PAGE: ABOUT -->
-<div class="page" id="page-about">
-  <section class="sec" style="min-height:calc(100vh - 68px)">
-    <div class="sec-inner">
-      <p class="sec-eyebrow">Our Story</p>
-      <h2 class="sec-title">A Place of Learning<br>and Belonging</h2>
-      <div class="sec-rule"><div class="rule-line"></div><div class="rule-dot"></div></div>
-      <div class="about-grid">
-        <div>
-          <p class="sec-desc" style="margin-bottom:1.5rem;max-width:100%">Central Christian Academy is a community dedicated to holistic education — where every student is known by name, inspired by purpose, and equipped for life beyond the classroom.</p>
-          <p class="sec-desc" style="margin-bottom:1.5rem;max-width:100%">We blend rigorous academics with faith-based formation to raise the next generation of thoughtful, courageous, and compassionate individuals ready to make a difference.</p>
-          <p class="sec-desc" style="max-width:100%">Our faculty are not simply teachers — they are mentors, guides, and fellow seekers of truth, committed to the flourishing of each unique child in their care.</p>
-        </div>
-        <div class="about-quote">
-          <p>"Education is not the filling of a pail, but the lighting of a fire — and we light that fire with the love of Christ."</p>
-          <cite>— Our Mission Statement</cite>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PAGE: FACULTY -->
-<div class="page" id="page-faculty">
-  <section class="sec" style="min-height:calc(100vh - 68px)">
-    <div class="sec-inner">
-      <p class="sec-eyebrow">Our Educators</p>
-      <h2 class="sec-title">Meet Our Faculty</h2>
-      <div class="sec-rule"><div class="rule-line"></div><div class="rule-dot"></div></div>
-      <p class="sec-desc">Dedicated teachers who inspire, guide, and care — each one called to serve.</p>
-      <div class="faculty-grid">
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">JD</div><div class="f-name">Mr. John Davis</div><div class="f-subject">Mathematics</div></div>
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">SM</div><div class="f-name">Mrs. Sarah Mitchell</div><div class="f-subject">English &amp; Literature</div></div>
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">RT</div><div class="f-name">Mr. Robert Thompson</div><div class="f-subject">Science</div></div>
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">EW</div><div class="f-name">Ms. Emily Williams</div><div class="f-subject">Bible &amp; Theology</div></div>
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">MJ</div><div class="f-name">Mrs. Maria Johnson</div><div class="f-subject">History &amp; Social Studies</div></div>
-        <div class="f-card"><div class="f-dot"></div><div class="f-avatar">DL</div><div class="f-name">Mr. Daniel Lee</div><div class="f-subject">Physical Education</div></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PAGE: STUDENTS -->
-<div class="page" id="page-students">
-  <section class="sec" style="min-height:calc(100vh - 68px)">
-    <div class="sec-inner">
-      <p class="sec-eyebrow">Our Community</p>
-      <h2 class="sec-title">Student Directory</h2>
-      <div class="sec-rule"><div class="rule-line"></div><div class="rule-dot"></div></div>
-      <p class="sec-desc">Every student a name known, a story cherished, a future shaped.</p>
-      <div class="students-toolbar">
-        <div class="search-wrap">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="student-search" placeholder="Search students…" oninput="renderStudents()">
-        </div>
-        <div class="grade-filter" id="grade-filter">
-          <button class="grade-btn active" data-grade="all" onclick="setGrade(this)">All</button>
-          <button class="grade-btn" data-grade="K" onclick="setGrade(this)">K</button>
-          <button class="grade-btn" data-grade="1-3" onclick="setGrade(this)">Gr 1–3</button>
-          <button class="grade-btn" data-grade="4-6" onclick="setGrade(this)">Gr 4–6</button>
-          <button class="grade-btn" data-grade="7-9" onclick="setGrade(this)">Gr 7–9</button>
-          <button class="grade-btn" data-grade="10-12" onclick="setGrade(this)">Gr 10–12</button>
-        </div>
-        <button class="add-btn" onclick="openModal()">＋ Add Student</button>
-      </div>
-      <div class="students-grid" id="students-grid"></div>
-    </div>
-  </section>
-</div>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeOutside(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-title" id="modal-title">Add New Student</div>
-    <div class="modal-sub" id="modal-sub">Fill in the student's details below.</div>
-    <div class="form-group">
-      <label class="form-label">Profile Photo (optional)</label>
-      <label class="photo-upload" for="photo-input" id="photo-lbl">
-        <img class="photo-preview" id="photo-prev" src="" alt="">
-        <div class="photo-upload-icon" id="photo-ico">📷</div>
-        <div class="photo-upload-text" id="photo-txt">Click to upload a photo</div>
-      </label>
-      <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="handlePhoto(event)">
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="f-first" type="text" placeholder="e.g. Emma"></div>
-      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="f-last" type="text" placeholder="e.g. Johnson"></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Grade</label>
-        <select class="form-select" id="f-grade">
-          <option value="K">Kindergarten</option>
-          <option value="1">Grade 1</option><option value="2">Grade 2</option><option value="3">Grade 3</option>
-          <option value="4">Grade 4</option><option value="5">Grade 5</option><option value="6">Grade 6</option>
-          <option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option>
-          <option value="10">Grade 10</option><option value="11">Grade 11</option><option value="12">Grade 12</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Section / Homeroom</label><input class="form-input" id="f-section" type="text" placeholder="e.g. Faith, Hope…"></div>
-    </div>
-    <button class="modal-btn" id="modal-btn" onclick="saveStudent()">✦ Add Student</button>
-  </div>
-</div>
+<footer>
+  <span class="mark">Hier stehe ich</span>
+  독일 종교개혁 탐방 가이드 · 역사적 사실을 바탕으로 제작되었습니다.
+</footer>
 
 <script>
-let students = JSON.parse(localStorage.getItem('cca-students')||'[]');
-let activeGrade = 'all';
-let editId = null;
-let photoData = null;
-
-function saveData(){ localStorage.setItem('cca-students', JSON.stringify(students)); }
-
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  ['home','about','faculty','students'].forEach((n,i)=>{ if(n===name) document.querySelectorAll('.nav-tab')[i].classList.add('active'); });
-  window.scrollTo(0,0);
-  if(name==='home') document.getElementById('stat-students').textContent=students.length;
-}
-
-function setGrade(btn){
-  document.querySelectorAll('.grade-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); activeGrade=btn.dataset.grade; renderStudents();
-}
-
-function gradeInRange(g){
-  if(activeGrade==='all') return true;
-  if(activeGrade==='K') return g==='K';
-  const [mn,mx]=activeGrade.split('-').map(Number);
-  const n=g==='K'?0:Number(g);
-  return n>=mn&&n<=mx;
-}
-
-function initials(f,l){ return (f[0]||'').toUpperCase()+(l[0]||'').toUpperCase(); }
-
-function renderStudents(){
-  const q=document.getElementById('student-search').value.toLowerCase();
-  const grid=document.getElementById('students-grid');
-  const list=students.filter(s=>(s.first+' '+s.last).toLowerCase().includes(q)&&gradeInRange(s.grade));
-  if(!list.length){
-    grid.innerHTML=`<div class="no-students">${students.length?'No students match your search.':'No students yet — click ＋ Add Student to get started!'}</div>`;
-    return;
-  }
-  grid.innerHTML=list.map(s=>`
-    <div class="s-card">
-      <div class="s-top">
-        <div class="s-grade">Gr ${s.grade}</div>
-        <div class="s-photo">${s.photo?`<img src="${s.photo}" alt="${s.first}">`:initials(s.first,s.last)}</div>
-      </div>
-      <div class="s-body">
-        <div class="s-name">${s.first} ${s.last}</div>
-        <div class="s-id">ID #${String(s.id).slice(-4).padStart(4,'0')}</div>
-        ${s.section?`<div class="s-section">${s.section}</div>`:''}
-        <div class="s-actions">
-          <button class="s-btn" onclick="openModal(${s.id})">Edit</button>
-          <button class="s-btn del" onclick="delStudent(${s.id})">Remove</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function openModal(id=null){
-  editId=id; photoData=null;
-  const prev=document.getElementById('photo-prev');
-  prev.style.display='none'; document.getElementById('photo-ico').style.display='block';
-  document.getElementById('photo-txt').textContent='Click to upload a photo';
-  document.getElementById('photo-input').value='';
-  if(id){
-    const s=students.find(x=>x.id===id);
-    document.getElementById('modal-title').textContent='Edit Student';
-    document.getElementById('modal-sub').textContent="Update the student's information.";
-    document.getElementById('modal-btn').textContent='✦ Save Changes';
-    document.getElementById('f-first').value=s.first;
-    document.getElementById('f-last').value=s.last;
-    document.getElementById('f-grade').value=s.grade;
-    document.getElementById('f-section').value=s.section||'';
-    if(s.photo){ photoData=s.photo; prev.src=s.photo; prev.style.display='block'; document.getElementById('photo-ico').style.display='none'; document.getElementById('photo-txt').textContent='Photo selected ✓'; }
-  } else {
-    document.getElementById('modal-title').textContent='Add New Student';
-    document.getElementById('modal-sub').textContent="Fill in the student's details below.";
-    document.getElementById('modal-btn').textContent='✦ Add Student';
-    document.getElementById('f-first').value=''; document.getElementById('f-last').value='';
-    document.getElementById('f-grade').value='1'; document.getElementById('f-section').value='';
-  }
-  document.getElementById('modal').classList.add('open');
-}
-
-function closeModal(){ document.getElementById('modal').classList.remove('open'); }
-function closeOutside(e){ if(e.target===document.getElementById('modal')) closeModal(); }
-
-function handlePhoto(e){
-  const file=e.target.files[0]; if(!file) return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    photoData=ev.target.result;
-    const prev=document.getElementById('photo-prev');
-    prev.src=photoData; prev.style.display='block';
-    document.getElementById('photo-ico').style.display='none';
-    document.getElementById('photo-txt').textContent='Photo ready ✓';
-  };
-  r.readAsDataURL(file);
-}
-
-function saveStudent(){
-  const first=document.getElementById('f-first').value.trim();
-  const last=document.getElementById('f-last').value.trim();
-  if(!first||!last){ alert('Please enter first and last name.'); return; }
-  const grade=document.getElementById('f-grade').value;
-  const section=document.getElementById('f-section').value.trim();
-  if(editId){
-    const s=students.find(x=>x.id===editId);
-    Object.assign(s,{first,last,grade,section});
-    if(photoData) s.photo=photoData;
-  } else {
-    students.push({id:Date.now(),first,last,grade,section,photo:photoData||null});
-  }
-  saveData(); renderStudents();
-  document.getElementById('stat-students').textContent=students.length;
-  closeModal();
-}
-
-function delStudent(id){
-  if(!confirm('Remove this student from the directory?')) return;
-  students=students.filter(s=>s.id!==id);
-  saveData(); renderStudents();
-  document.getElementById('stat-students').textContent=students.length;
-}
-
-// Particles
-(function(){
-  const c=document.getElementById('particles');
-  for(let i=0;i<22;i++){
-    const p=document.createElement('div'); p.className='particle';
-    const sz=Math.random()*2.5+1;
-    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${Math.random()*18+14}s;animation-delay:-${Math.random()*22}s`;
-    c.appendChild(p);
-  }
-})();
-
-renderStudents();
-document.getElementById('stat-students').textContent=students.length;
+  const stops = document.querySelectorAll('.stop');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  stops.forEach(s=>io.observe(s));
 </script>
+
 </body>
 </html>
